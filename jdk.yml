@@ -1,0 +1,12 @@
+---
+- name: Install OpenJDK on Windows 11
+  hosts: windows
+  gather_facts: false
+  become: yes
+  become_user: username
+
+  tasks:
+    - name: Install OpenJDK
+      win_chocolatey:
+        name: openjdk8
+        state: present
