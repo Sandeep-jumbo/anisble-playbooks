@@ -1,12 +1,15 @@
 ---
-- name: Install OpenJDK on Windows 11
-  hosts: 10.10.5.188
-  gather_facts: false
-  become: yes
-  become_user: username
+- name: Download and install 7zip on Windows
+  hosts: all
+  gather_facts: no
 
   tasks:
-    - name: Install OpenJDK
-      win_chocolatey:
-        name: openjdk8
-        state: present
+  - name: Download the 7-Zip package
+    win_get_url:
+      url: https://www.7-zip.org/a/7z1701-x64.msi
+      dest: C:\Windows\Temp\7z.msi
+
+  - name: Install MSI
+    win_package:
+      path: C:\Windows\Temp\7z.msi
+      state: present
