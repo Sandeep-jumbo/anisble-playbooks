@@ -1,6 +1,6 @@
 ---
 - name: Install OpenJDK on Windows 11
-  hosts: Windows
+  hosts: 10.10.5.188
   gather_facts: false
   become: yes
   become_user: username
