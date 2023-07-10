@@ -1,0 +1,14 @@
+- name: Install Apache Tomcat
+  hosts: 10.10.5.192
+  gather_facts: no
+  tasks:
+    - name: Download Apache Tomcat installer
+      win_get_url:
+        url: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.76/bin/apache-tomcat-9.0.76.exe
+        dest: C:\Temp\apache-tomcat-9.0.76.exe
+
+    - name: Install Apache Tomcat
+      win_shell: |
+        Start-Process -FilePath "C:\Temp\apache-tomcat-9.0.76.exe" -ArgumentList "/S" -Wait
+      become: yes
+      become_user: Administrator
